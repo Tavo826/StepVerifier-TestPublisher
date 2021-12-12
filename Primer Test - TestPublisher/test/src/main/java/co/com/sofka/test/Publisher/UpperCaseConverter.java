@@ -33,3 +33,19 @@ public class UpperCaseConverter {
         return source.map(String::toUpperCase);
     }
 }
+
+/* También podemos simular casos de comportamientos inesperados (misbehaving) de un posible publicador */
+
+
+/* Publicador que emite una serie de números, uno de los cuales va nulo en circunstancias normales este comportamiento arrojaria un NullPointException que es precisamente lo que queremos probar */
+
+// TestPulisher.createNoncompliant(TestPublisher.Violation.ALLOW_NULL).emit("1","2", null, "3");
+
+
+
+/* 
+Además de ALLOW_NULL podemos configurar algunos otros comportamientos típicos que ocasionarían errores. 
+* REQUEST_OVERFLOW – permite llamar a next() sin lanzar una IllegalStateException cuando hay un número insuficiente de solicitudes.
+* CLEANUP_ON_TERMINATE – permite enviar varias señales de terminación consecutivamente.
+* DEFER_CANCELLATION – nos permite ignorar las señales de cancelación y continuar con la emisión de elementos 
+*/
